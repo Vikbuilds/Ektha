@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     "Song of God",
   ],
   openGraph: {
-    title: "भगवद्गीता (Bhagavad Gita) | तत्त्व (Tatva)",
+    title: "भगवद्गीता (Bhagavad Gita) | एकता (Ektha)",
     description:
       "Read the Bhagavad Gita - the timeless guide to life with Krishna's teachings on philosophy, ethics, and spirituality.",
-    url: "https://tatva.info/bhagavad-gita",
+    url: "https://ektha.info/bhagavad-gita",
     images: ["/gita.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/bhagavad-gita",
+    canonical: "https://ektha.info/bhagavad-gita",
   },
 };
 
