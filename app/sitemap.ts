@@ -59,6 +59,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     // Get all books with their codes
+    if (!supabase) {
+      console.warn("Supabase client not initialized. Skipping dynamic shloka pages for sitemap.");
+      return [...staticPages, ...bookPages];
+    }
+
     const { data: booksData } = await supabase
       .from("books")
       .select("id, code");
