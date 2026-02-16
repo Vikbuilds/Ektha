@@ -85,6 +85,7 @@
     --glow-secondary: 280 80% 45%;
     --surface: 240 8% 10%;
   }
+
   .theme {
     --animate-shiny-text: shiny-text 8s infinite;
     --animate-shine: shine var(--duration) infinite linear;
@@ -108,7 +109,12 @@
     line-height: 1.7;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Domine', Georgia, serif;
     font-weight: 500;
     letter-spacing: -0.01em;
@@ -143,13 +149,11 @@
 
   .divider-glow {
     @apply border-0 h-px w-full relative;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      hsl(var(--divider)) 30%,
-      hsl(var(--divider)) 70%,
-      transparent 100%
-    );
+    background: linear-gradient(90deg,
+        transparent 0%,
+        hsl(var(--divider)) 30%,
+        hsl(var(--divider)) 70%,
+        transparent 100%);
   }
 
   .glow-ambient {
@@ -162,11 +166,9 @@
     height: 600px;
     pointer-events: none;
     z-index: 0;
-    background: radial-gradient(
-      ellipse 50% 50% at 50% 0%,
-      hsl(var(--glow-primary) / 0.08) 0%,
-      transparent 70%
-    );
+    background: radial-gradient(ellipse 50% 50% at 50% 0%,
+        hsl(var(--glow-primary) / 0.08) 0%,
+        transparent 70%);
   }
 
   .glow-card {
@@ -180,11 +182,9 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(
-      180deg,
-      hsl(var(--border)) 0%,
-      transparent 50%
-    );
+    background: linear-gradient(180deg,
+        hsl(var(--border)) 0%,
+        transparent 50%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -232,7 +232,7 @@
     @apply relative rounded-lg overflow-hidden;
   }
 
-  .btn-tatva {
+  .btn-ektha {
     background: #c65c39;
   }
 
@@ -241,7 +241,7 @@
   }
 
   .dark .image-glow {
-    box-shadow: 
+    box-shadow:
       0 0 60px hsl(var(--glow-primary) / 0.15),
       0 0 100px hsl(var(--glow-secondary) / 0.1);
   }
@@ -377,6 +377,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -384,9 +385,12 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.7;
   }
@@ -396,6 +400,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -408,33 +413,40 @@
     0% {
       background-position: 0% 0%;
     }
+
     50% {
       background-position: 100% 100%;
     }
+
     to {
       background-position: 0% 0%;
     }
   }
+
   @keyframes aurora {
-  0% {
-    background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
+    0% {
+      background-position: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
     }
-  25% {
-    background-position: 50% 100%;
-    transform: rotate(5deg) scale(1.1);
+
+    25% {
+      background-position: 50% 100%;
+      transform: rotate(5deg) scale(1.1);
     }
-  50% {
-    background-position: 100% 50%;
-    transform: rotate(-3deg) scale(0.95);
+
+    50% {
+      background-position: 100% 50%;
+      transform: rotate(-3deg) scale(0.95);
     }
-  75% {
-    background-position: 50% 0%;
-    transform: rotate(3deg) scale(1.05);
+
+    75% {
+      background-position: 50% 0%;
+      transform: rotate(3deg) scale(1.05);
     }
-  100% {
-    background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
+
+    100% {
+      background-position: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
     }
   }
 }

@@ -35,12 +35,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${book.hindi} - Section ${sectionNum}, Chapter ${chapterNum}`,
     description: `Read shlokas from ${book.english} (${book.hindi}). Section ${sectionNum}, Chapter ${chapterNum}. Explore the sacred verses with Sanskrit text, transliteration, and English translation.`,
     openGraph: {
-      title: `${book.hindi} (${book.english}) | तत्त्व (Tatva)`,
+      title: `${book.hindi} (${book.english}) | एकता (Ektha)`,
       description: `Read shlokas from ${book.english}. Section ${sectionNum}, Chapter ${chapterNum}.`,
-      url: `https://tatva.info/shlokas/${id}`,
+      url: `https://ektha.info/shlokas/${id}`,
     },
     alternates: {
-      canonical: `https://tatva.info/shlokas/${id}`,
+      canonical: `https://ektha.info/shlokas/${id}`,
     },
   };
 }

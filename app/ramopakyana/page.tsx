@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     "Hindu Scriptures",
   ],
   openGraph: {
-    title: "रामोपाख्यान (Ramopakyana) | तत्त्व (Tatva)",
+    title: "रामोपाख्यान (Ramopakyana) | एकता (Ektha)",
     description:
-      "Read Ramopakyana - the story of Rama from the Mahabharata.",
-    url: "https://tatva.info/ramopakyana",
+      "Explore the Ramopakyana - the summary of Ramayana found within the Mahabharata.",
+    url: "https://ektha.info/ramopakyana",
     images: ["/Rāmopākhyāna.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/ramopakyana",
+    canonical: "https://ektha.info/ramopakyana",
   },
 };
 

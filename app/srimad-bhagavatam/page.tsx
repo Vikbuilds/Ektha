@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     "Hindu Scriptures",
   ],
   openGraph: {
-    title: "श्रीमद् भागवतम् (Srimad Bhagavatam) | तत्त्व (Tatva)",
+    title: "श्रीमद्भागवतम् (Srimad Bhagavatam) | एकता (Ektha)",
     description:
-      "Read Srimad Bhagavatam - the story of Lord Krishna across 12 Skandas with profound philosophical teachings.",
-    url: "https://tatva.info/srimad-bhagavatam",
-    images: ["/srimad%20bhagvatam.png"],
+      "Explore the Srimad Bhagavatam - one of the 18 major Puranas that focuses on bhakti to Krishna.",
+    url: "https://ektha.info/srimad-bhagavatam",
+    images: ["/srimad bhagvatam.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/srimad-bhagavatam",
+    canonical: "https://ektha.info/srimad-bhagavatam",
   },
 };
 

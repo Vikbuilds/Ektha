@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     "Hindu Scriptures",
   ],
   openGraph: {
-    title: "देवी महात्म्यम् (Devi Mahatmyam) | तत्त्व (Tatva)",
+    title: "देवीमाहात्म्यम् (Devi Mahatmyam) | एकता (Ektha)",
     description:
-      "Read Devi Mahatmyam - the Glory of the Divine Mother, also known as Durga Saptashati.",
-    url: "https://tatva.info/devi-mahatmyam",
+      "Explore the Devi Mahatmyam - the glory of the Goddess, narrating her victories over demons.",
+    url: "https://ektha.info/devi-mahatmyam",
     images: ["/devi.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/devi-mahatmyam",
+    canonical: "https://ektha.info/devi-mahatmyam",
   },
 };
 

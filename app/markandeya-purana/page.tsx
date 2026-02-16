@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     "Creation Stories",
   ],
   openGraph: {
-    title: "मार्कण्डेय पुराण (Markandeya Purana) | तत्त्व (Tatva)",
+    title: "मार्कण्डेय पुराण (Markandeya Purana) | एकता (Ektha)",
     description:
-      "Read Markandeya Purana - ancient legends containing stories of creation and spiritual teachings.",
-    url: "https://tatva.info/markandeya-purana",
-    images: ["/markandaye%20puran.png"],
+      "Explore the Markandeya Purana - one of the major Puranas containing a dialogue between Sage Markandeya and Jaimini.",
+    url: "https://ektha.info/markandeya-purana",
+    images: ["/markandaye puran.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/markandeya-purana",
+    canonical: "https://ektha.info/markandeya-purana",
   },
 };
 

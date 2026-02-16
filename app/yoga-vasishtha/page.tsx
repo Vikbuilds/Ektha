@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     "Non-Dualism",
   ],
   openGraph: {
-    title: "योग वासिष्ठ (Yoga Vasishtha) | तत्त्व (Tatva)",
+    title: "योगवासिष्ठ (Yoga Vasishtha) | एकता (Ektha)",
     description:
-      "Read Yoga Vasishtha - the philosophy of non-dualism through dialogue between Rama and Vasishtha.",
-    url: "https://tatva.info/yoga-vasishtha",
-    images: ["/yoga%20vasistha.png"],
+      "Dive into the philosophical teachings of the Yoga Vasishtha - a dialogue between Prince Rama and Sage Vasishtha.",
+    url: "https://ektha.info/yoga-vasishtha",
+    images: ["/yoga vasistha.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/yoga-vasishtha",
+    canonical: "https://ektha.info/yoga-vasishtha",
   },
 };
 

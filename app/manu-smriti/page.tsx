@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     "Social Order",
   ],
   openGraph: {
-    title: "मनु स्मृति (Manu Smriti) | तत्त्व (Tatva)",
+    title: "मनुस्मृति (Manu Smriti) | एकता (Ektha)",
     description:
-      "Read Manu Smriti - the Laws of Manu, an ancient text on dharma and social conduct.",
-    url: "https://tatva.info/manu-smriti",
-    images: ["/manu%20smriti.png"],
+      "Read the Manu Smriti - the authoritative ancient Indian legal text providing a guide to dharma.",
+    url: "https://ektha.info/manu-smriti",
+    images: ["/manu smriti.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/manu-smriti",
+    canonical: "https://ektha.info/manu-smriti",
   },
 };
 

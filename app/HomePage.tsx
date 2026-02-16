@@ -36,7 +36,7 @@ const features = [
     cta: "Start Searching",
     className: "col-span-3 lg:col-span-2",
     background: <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />,
-    onCtaClick: () => window.dispatchEvent(new CustomEvent("open-tatva-search")),
+    onCtaClick: () => window.dispatchEvent(new CustomEvent("open-ektha-search")),
   },
   {
     Icon: Scroll,
@@ -110,7 +110,7 @@ export default function HomePage() {
         <div className="flex justify-center mb-10 animate-fade-up-delay-2">
           <Link
             href="/contents"
-            className="btn-tatva inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium rounded-full text-white dark:text-black mt-2 transition-transform hover:scale-105"
+            className="btn-ektha inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium rounded-full text-white dark:text-black mt-2 transition-transform hover:scale-105"
           >
             <span className="font-english">Start Reading</span>
           </Link>

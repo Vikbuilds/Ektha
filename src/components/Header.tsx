@@ -80,6 +80,13 @@ const Header = ({ showSearch = true }: HeaderProps) => {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  // Listen for custom open-ektha-search event
+  useEffect(() => {
+    const handleOpenSearch = () => setOpen(true);
+    window.addEventListener("open-ektha-search", handleOpenSearch);
+    return () => window.removeEventListener("open-ektha-search", handleOpenSearch);
+  }, []);
+
   // Scroll detection for header visibility
   useEffect(() => {
     const handleScroll = () => {

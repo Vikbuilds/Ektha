@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     "Planets",
   ],
   openGraph: {
-    title: "पराशर होरा शास्त्र (Parashara Hora Shastra) | तत्त्व (Tatva)",
+    title: "पराशर स्मृति (Parashara Smriti) | एकता (Ektha)",
     description:
-      "Read Parashara Hora Shastra - the science of Vedic astrology and horoscopy.",
-    url: "https://tatva.info/parashara",
-    images: ["/parahar%20sastra.png"],
+      "Read the Parashara Smriti - a code of laws for the Kali Yuga attributed to the sage Parashara.",
+    url: "https://ektha.info/parashara",
+    images: ["/parahar sastra.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/parashara",
+    canonical: "https://ektha.info/parashara",
   },
 };
 

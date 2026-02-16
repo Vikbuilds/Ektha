@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     "Hindu Scriptures",
   ],
   openGraph: {
-    title: "महाभारत (Mahabharata) | तत्त्व (Tatva)",
+    title: "महाभारत (Mahabharata) | एकता (Ektha)",
     description:
-      "Read the Mahabharata - the greatest epic of India with 18 Parvas narrating the Kurukshetra war and profound philosophical teachings.",
-    url: "https://tatva.info/mahabharata",
+      "Explore the Mahabharata - one of the two major Sanskrit epics of ancient India.",
+    url: "https://ektha.info/mahabharata",
     images: ["/mahabharata.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/mahabharata",
+    canonical: "https://ektha.info/mahabharata",
   },
 };
 

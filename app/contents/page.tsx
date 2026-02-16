@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "Browse our complete collection of ancient Indian scriptures including Rigveda, Ramayana, Mahabharata, Bhagavad Gita, Srimad Bhagavatam, and more.",
   openGraph: {
-    title: "Sacred Texts Collection | तत्त्व (Tatva)",
+    title: "Sacred Texts Collection | एकता (Ektha)",
     description:
       "Browse our complete collection of ancient Indian scriptures including Rigveda, Ramayana, Mahabharata, and more.",
-    url: "https://tatva.info/contents",
+    url: "https://ektha.info/contents",
   },
   alternates: {
-    canonical: "https://tatva.info/contents",
+    canonical: "https://ektha.info/contents",
   },
 };
 

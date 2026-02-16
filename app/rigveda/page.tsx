@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     "Suktas",
   ],
   openGraph: {
-    title: "ऋग्वेद (Rigveda) | तत्त्व (Tatva)",
+    title: "ऋग्वेद (Rigveda) | एकता (Ektha)",
     description:
-      "Read the Rigveda - the oldest of the four Vedas containing 1,028 hymns organized into 10 mandalas.",
-    url: "https://tatva.info/rigveda",
+      "Explore the Rigveda - the oldest Vedic Sanskrit text containing hymns to the deities.",
+    url: "https://ektha.info/rigveda",
     images: ["/rigveda.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/rigveda",
+    canonical: "https://ektha.info/rigveda",
   },
 };
 

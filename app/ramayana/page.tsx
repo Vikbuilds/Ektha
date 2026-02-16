@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     "Hindu Scriptures",
   ],
   openGraph: {
-    title: "रामायण (Ramayana) | तत्त्व (Tatva)",
+    title: "रामायण (Ramayana) | एकता (Ektha)",
     description:
-      "Read the Ramayana - the eternal story of Lord Rama. The ideal of human conduct and divine grace through 24,000 verses.",
-    url: "https://tatva.info/ramayana",
+      "Explore the Valmiki Ramayana - the ancient Indian epic depicting the life of Prince Rama.",
+    url: "https://ektha.info/ramayana",
     images: ["/ramayana.png"],
   },
   alternates: {
-    canonical: "https://tatva.info/ramayana",
+    canonical: "https://ektha.info/ramayana",
   },
 };
 

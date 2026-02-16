@@ -16,13 +16,12 @@ export const metadata: Metadata = {
     "Ancient Texts Organization",
   ],
   openGraph: {
-    title: "Structure & Organization | तत्त्व (Tatva)",
-    description:
-      "The hierarchical organization of Sanskrit literature - Vedas, Puranas, Epics, and more.",
-    url: "https://tatva.info/structure",
+    title: "App Structure | एकता (Ektha)",
+    description: "Explore the organizational structure of sacred ancient texts.",
+    url: "https://ektha.info/structure",
   },
   alternates: {
-    canonical: "https://tatva.info/structure",
+    canonical: "https://ektha.info/structure",
   },
 };
 

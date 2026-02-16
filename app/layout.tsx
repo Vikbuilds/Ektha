@@ -200,7 +200,7 @@ export default function RootLayout({
               isPartOf: {
                 "@type": "WebSite",
                 name: "Ektha",
-                url: "https://tatva.info",
+                url: "https://ektha.info",
               },
               about: {
                 "@type": "Thing",
