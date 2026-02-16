@@ -9,6 +9,7 @@ export interface Shloka {
   transliteration: string | null;
   translation_english: string | null;
   translation_hindi: string | null;
+  commentary: string | null;
   is_highlighted: boolean;
 }
 
@@ -77,6 +78,7 @@ export const useChapter = (code: string | undefined) => {
                   transliteration,
                   translation_english,
                   translation_hindi,
+                  commentary,
                   is_highlighted
                 )
               )
@@ -98,6 +100,9 @@ export const useChapter = (code: string | undefined) => {
         const chapter = (section.chapters as any[])[0];
         const shlokas = (chapter.shlokas as any[]) || [];
 
+        // Check if any shlokas in this chapter have translations
+        const actuallyHasTranslation = shlokas.some(s => s.translation_english || s.translation_hindi);
+
         return {
           bookCode,
           bookName: bookData.name_english,
@@ -117,9 +122,10 @@ export const useChapter = (code: string | undefined) => {
             transliteration: s.transliteration,
             translation_english: s.translation_english,
             translation_hindi: s.translation_hindi,
+            commentary: s.commentary,
             is_highlighted: s.is_highlighted,
           })),
-          hasTranslation: bookData.has_translation_english || false,
+          hasTranslation: bookData.has_translation_english || actuallyHasTranslation,
           contentFormat: bookData.content_format || "shloka",
         };
       } catch (err) {

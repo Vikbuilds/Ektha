@@ -166,7 +166,7 @@ const CONFIG = {
     },
     ramayana: {
         book: {
-            code: 'ram',
+            code: 'rm',
             name_english: 'Valmiki Ramayana',
             name_hindi: 'वाल्मीकि रामायण',
             description: 'The Valmiki Ramayana is an ancient Indian epic, attributed to the sage Valmiki.',
@@ -184,37 +184,46 @@ const CONFIG = {
             '6_yudhhakanda.json',
             '7_uttarakanda.json'
         ],
+        kandaHindiNames: [
+            'बालकाण्ड',
+            'अयोध्याकाण्ड',
+            'अरण्यकाण्ड',
+            'किष्किन्धाकाण्ड',
+            'सुन्दरकाण्ड',
+            'युद्धकाण्ड',
+            'उत्तरकाण्ड'
+        ],
         mapping: {
             section: (item, index) => ({
-                code: `ram-${index + 1}`,
-                name_english: item.kanda.replace('_', ' '),
-                name_hindi: '', // Need mapping
+                code: `rm-${index + 1}`,
+                name_english: CONFIG.ramayana.files[index].split('_')[1].replace('.json', '').replace(/^\w/, c => c.toUpperCase()) + ' Kanda',
+                name_hindi: CONFIG.ramayana.kandaHindiNames[index],
                 section_number: index + 1,
                 display_order: index + 1
             }),
             chapter: (item) => ({
-                chapter_number: item.sarga,
-                name_english: `Sarga ${item.sarga}`,
-                name_hindi: `सर्ग ${item.sarga}`,
-                display_order: item.sarga
+                chapter_number: item.sarg,
+                name_english: `Sarga ${item.sarg}`,
+                name_hindi: `सर्ग ${item.sarg}`,
+                display_order: item.sarg
             }),
-            shlokas: (item) => {
-                // Split by verse marks ॥
-                const verses = item.text.split(/॥(\d+)॥/).filter(v => v.trim());
-                const results = [];
-                for (let i = 0; i < verses.length; i += 2) {
-                    const content = verses[i].trim();
-                    const num = parseInt(verses[i + 1]);
-                    if (!isNaN(num)) {
-                        results.push({
-                            shloka_number: num,
-                            sanskrit: content,
-                            code: `ram-${item.kanda_index}-${item.sarga}-${num}`,
-                            display_order: num
-                        });
-                    }
-                }
-                return results;
+            shlokas: (item, sectionCode) => {
+                const num = item.shloka;
+                let content = item.text.trim();
+
+                // Remove trailing verse markers like ॥१-१-१॥ or ॥१॥
+                content = content.replace(/॥[०-९\d\-\s]+॥$/, '').trim();
+
+                if (!content || isNaN(num)) return [];
+
+                const translit = Sanscript.t(content, 'devanagari', 'iast');
+                return [{
+                    shloka_number: num,
+                    sanskrit: content,
+                    transliteration: translit,
+                    code: `${sectionCode}-${item.sarg}-${num}`,
+                    display_order: num
+                }];
             }
         }
     }
@@ -269,69 +278,87 @@ async function startIngestion() {
 
         console.log(`📄 Processing: ${fileName} (${data.length} items)`);
 
-        // Group by section and chapter
-        for (const item of data) {
-            // item might contain mandala/sukta (Rigveda) or kanda/sarga (Ramayana)
+        // a. Ensure Section exists
+        const firstItem = data[0];
+        const sectionData = config.mapping.section(firstItem, fileIdx);
+        let { data: section } = await supabase
+            .from('sections')
+            .select('id')
+            .eq('book_id', book.id)
+            .eq('code', sectionData.code)
+            .single();
 
-            // a. Section (Mandala/Kanda)
-            const sectionData = config.mapping.section(item, fileIdx);
-            let { data: section } = await supabase
+        if (!section) {
+            const { data: newSection } = await supabase
                 .from('sections')
+                .insert({ ...sectionData, book_id: book.id })
                 .select('id')
-                .eq('book_id', book.id)
-                .eq('code', sectionData.code)
                 .single();
+            section = newSection;
+            console.log(`✅ Created Section: ${sectionData.name_english}`);
+        }
 
-            if (!section) {
-                const { data: newSection } = await supabase
-                    .from('sections')
-                    .insert({ ...sectionData, book_id: book.id })
-                    .select('id')
-                    .single();
-                section = newSection;
+        // Group shlokas by chapter
+        const chaptersMap = new Map();
+        for (const item of data) {
+            const chapData = config.mapping.chapter(item);
+            const chapNum = chapData.chapter_number;
+            if (!chaptersMap.has(chapNum)) {
+                chaptersMap.set(chapNum, {
+                    data: chapData,
+                    shlokas: []
+                });
             }
+            const itemShlokas = config.mapping.shlokas(item, sectionData.code);
+            chaptersMap.get(chapNum).shlokas.push(...itemShlokas);
+        }
 
-            // b. Chapter (Sukta/Sarga)
-            const chapterData = config.mapping.chapter(item);
+        console.log(`📦 Grouped into ${chaptersMap.size} chapters. Starting batch inserts...`);
+
+        // b. Process Chapters and their Shlokas
+        for (const [chapNum, group] of chaptersMap) {
             let { data: chapter } = await supabase
                 .from('chapters')
                 .select('id')
                 .eq('section_id', section.id)
-                .eq('chapter_number', chapterData.chapter_number)
+                .eq('chapter_number', chapNum)
                 .single();
 
             if (!chapter) {
                 const { data: newChapter } = await supabase
                     .from('chapters')
-                    .insert({ ...chapterData, section_id: section.id })
+                    .insert({ ...group.data, section_id: section.id })
                     .select('id')
                     .single();
                 chapter = newChapter;
             }
 
-            // c. Shlokas (Verses)
-            if (scriptureKey === 'rigveda') item.mandala = sectionData.section_number;
-
-            const shlokas = config.mapping.shlokas(item);
-
-            if (shlokas.length > 0) {
+            // Batch insert shlokas for this chapter
+            if (group.shlokas.length > 0) {
                 const { data: existing } = await supabase
                     .from('shlokas')
                     .select('shloka_number')
                     .eq('chapter_id', chapter.id);
 
                 const existingNums = new Set(existing ? existing.map(s => s.shloka_number) : []);
-                const toInsert = shlokas.filter(s => !existingNums.has(s.shloka_number));
+                const toInsert = group.shlokas
+                    .filter(s => !existingNums.has(s.shloka_number))
+                    .map(s => ({ ...s, chapter_id: chapter.id }));
 
                 if (toInsert.length > 0) {
+                    process.stdout.write(`  Inserting ${toInsert.length} shlokas for Ch ${chapNum}... `);
                     const { error: iError } = await supabase
                         .from('shlokas')
-                        .insert(toInsert.map(s => ({ ...s, chapter_id: chapter.id })));
+                        .insert(toInsert);
 
-                    if (iError) console.error(`❌ Insert error B:${chapterData.chapter_number}`, iError.message);
+                    if (iError) {
+                        console.error(`❌ Error in Ch ${chapNum}:`, iError.message);
+                    } else {
+                        console.log('✅');
+                    }
                 }
             }
-            await delay(50);
+            await delay(20);
         }
     }
 

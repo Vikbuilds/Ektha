@@ -306,10 +306,34 @@ export default function ShlokaPage({ id }: ShlokaPageProps) {
                   )}
                 </div>
 
-                {/* Right: Translation */}
-                {data.hasTranslation && shloka.translation_english && (
+                {/* Right: Translation & Commentary */}
+                {data.hasTranslation && (shloka.translation_english || shloka.commentary) && (
                   <div className="mt-4 lg:mt-0 lg:pt-8 min-w-0">
-                    <p className="shloka-translation break-words">{shloka.translation_english}</p>
+                    {shloka.translation_english && (
+                      <p className="shloka-translation break-words mb-6">{shloka.translation_english}</p>
+                    )}
+
+                    {shloka.commentary && (
+                      <div className="shloka-commentary text-sm text-muted-foreground/80 leading-relaxed space-y-4 border-l-2 border-primary/20 pl-4 py-1">
+                        {shloka.commentary.split('\n\n').map((para, i) => {
+                          if (para.startsWith('**Word Meanings:**')) {
+                            return (
+                              <div key={i} className="font-sanskrit text-xs leading-loose opacity-90">
+                                <strong className="text-primary/70 font-english uppercase tracking-wider block mb-1">Word Meanings</strong>
+                                {para.replace('**Word Meanings:**', '').trim()}
+                              </div>
+                            );
+                          }
+                          return (
+                            <p key={i} className="font-english italic opacity-75">
+                              {para.startsWith('**Commentary:**')
+                                ? <><strong className="text-primary/70 font-english uppercase tracking-wider block mb-1 not-italic">Commentary</strong>{para.replace('**Commentary:**', '').trim()}</>
+                                : para}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
